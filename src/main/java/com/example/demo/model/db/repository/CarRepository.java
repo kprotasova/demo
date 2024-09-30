@@ -32,7 +32,7 @@ public interface CarRepository extends JpaRepository<Car, Long> {
     Page<Car> findAllByStatusNot(Pageable request, CarStatus status);
 
     @Query("select c from Car c where c.status <> :status and lower(c.model) like %:filter%")
-    Page<Car> findAllByStatusNotFiltered(Pageable pageRequest, CarStatus carStatus, String filter);
+    Page<Car> findAllByStatusNotFiltered(Pageable pageRequest, CarStatus status, String filter);
 }
 
 

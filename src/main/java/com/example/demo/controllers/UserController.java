@@ -8,6 +8,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -52,10 +54,14 @@ public class UserController {
             @ApiResponse(responseCode = "401", description = "Не авторизован")
     })
     @Operation(summary = "Получить список пользователей")
-    public List<UserInfoResponse> getAllUsers() {
-        return userService.getAllUsers();
-    }
+    public Page<UserInfoResponse> getAllUsers(@RequestParam(defaultValue = "1") Integer page,
+                                              @RequestParam(defaultValue = "10") Integer perPage,
+                                              @RequestParam(defaultValue = "lastName") String sort,
+                                              @RequestParam(defaultValue = "ASC") Sort.Direction order,
+                                              @RequestParam(required = false) String filter) {
 
+        return userService.getAllUsers(page, perPage, sort, order, filter);
+    }
 
 //    @GetMapping ("/info")
 //    public UserInfoResponse getByParams(@RequestParam String data) {

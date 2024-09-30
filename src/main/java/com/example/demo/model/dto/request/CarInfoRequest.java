@@ -1,5 +1,6 @@
 package com.example.demo.model.dto.request;
 
+import com.example.demo.model.enums.Color;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.SuperBuilder;
@@ -17,7 +18,7 @@ public class CarInfoRequest {
 
     @NotEmpty
     String model;
-    String color;
+    Color color;
 
     @NotNull
     Integer weight;
